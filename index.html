@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="uk">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DonatCase | UAH</title>
+    <title>Funtime UA | Донат-магазин</title>
     <style>
         * {
             margin: 0;
@@ -13,124 +13,163 @@
         }
 
         body {
-            background: #0b0b0f;
-            background-image: radial-gradient(circle at 25% 0%, rgba(30, 30, 50, 0.4) 0%, #0b0b0f 80%);
+            background: #0a0a0f;
+            background-image: radial-gradient(circle at 20% 30%, rgba(80, 70, 180, 0.15) 0%, #0a0a0f 90%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 2rem;
+            padding: 2rem 1rem;
         }
 
-        /* стеклянный карточный стиль */
-        .glass-card {
-            background: rgba(20, 20, 28, 0.75);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 2rem;
-            padding: 2rem;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.5);
-        }
-
+        /* Главная сетка */
         .container {
-            max-width: 500px;
-            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .badge {
-            display: inline-flex;
-            gap: 0.7rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.5rem 1.2rem;
-            border-radius: 40px;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
+        /* Шапка */
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
         }
 
-        .badge span.active {
-            color: #7cffb0;
-            border-bottom: 1px solid #7cffb0;
-        }
-
-        h1 {
-            font-size: 2rem;
-            font-weight: 600;
-            letter-spacing: -0.02em;
-            background: linear-gradient(135deg, #fff, #aaa);
+        .logo {
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #9b87f5);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            margin-bottom: 0.25rem;
+            letter-spacing: -0.02em;
         }
 
         .sub {
-            color: #8e8e9e;
+            color: #7a7a8a;
+            margin-top: 0.5rem;
+        }
+
+        /* Две колонки */
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 1fr 380px;
+            gap: 2rem;
+        }
+
+        /* Каталог товаров */
+        .catalog {
+            background: rgba(15, 15, 20, 0.6);
+            backdrop-filter: blur(8px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 1.5rem;
+        }
+
+        .category {
             margin-bottom: 2rem;
+        }
+
+        .category h3 {
+            color: #9b87f5;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            letter-spacing: -0.3px;
+            border-left: 3px solid #9b87f5;
+            padding-left: 0.8rem;
+        }
+
+        .items-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 0.8rem;
+        }
+
+        .item-card {
+            background: #111115;
+            border: 1px solid #22222a;
+            border-radius: 1.2rem;
+            padding: 0.8rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .item-card:hover {
+            border-color: #9b87f5;
+            transform: translateY(-2px);
+            background: #18181e;
+        }
+
+        .item-card.active {
+            border-color: #7cffb0;
+            background: #1a2420;
+            box-shadow: 0 0 12px rgba(124, 255, 176, 0.2);
+        }
+
+        .item-name {
+            font-weight: 600;
             font-size: 0.9rem;
         }
 
-        .card-details {
-            background: #0f0f14;
-            border-radius: 1.5rem;
+        .item-price {
+            color: #7cffb0;
+            font-weight: 700;
+            font-size: 1rem;
+            margin-top: 0.3rem;
+        }
+
+        /* Корзина / оплата */
+        .checkout {
+            background: rgba(12, 12, 16, 0.8);
+            backdrop-filter: blur(12px);
+            border-radius: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.08);
             padding: 1.5rem;
-            margin: 1.8rem 0;
-            border: 1px solid #222;
+            height: fit-content;
+            position: sticky;
+            top: 1rem;
+        }
+
+        .selected-item {
+            background: #111115;
+            border-radius: 1.2rem;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        .card-details {
+            background: #0c0c10;
+            border-radius: 1.2rem;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
         }
 
         .card-number {
             font-family: monospace;
-            font-size: 1.6rem;
-            letter-spacing: 2px;
-            font-weight: 500;
-            background: #00000040;
-            padding: 0.6rem;
-            border-radius: 1rem;
-            text-align: center;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
             margin: 0.5rem 0;
-        }
-
-        .row {
-            display: flex;
-            justify-content: space-between;
-            margin: 1rem 0;
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #222;
-        }
-
-        .amount-input {
-            background: #1a1a22;
-            border: 1px solid #2c2c34;
-            padding: 0.8rem 1rem;
-            border-radius: 1.2rem;
-            font-size: 1.3rem;
-            width: 100%;
-            color: white;
-            font-weight: 500;
-            outline: none;
+            word-break: break-all;
         }
 
         .timer {
             background: #1a1a22;
             text-align: center;
-            padding: 1rem;
+            padding: 0.8rem;
             border-radius: 2rem;
-            font-size: 2.2rem;
-            font-weight: 700;
             font-family: monospace;
-            letter-spacing: 5px;
+            font-size: 1.6rem;
+            font-weight: 700;
             margin: 1rem 0;
             color: #ffd966;
         }
 
         .btn {
             background: #7cffb0;
-            color: #0b0b0f;
+            color: #000;
             font-weight: 700;
             padding: 1rem;
             width: 100%;
             border: none;
-            border-radius: 2rem;
+            border-radius: 1.8rem;
             font-size: 1rem;
             cursor: pointer;
             transition: 0.2s;
@@ -138,99 +177,113 @@
 
         .btn:hover {
             background: #5ee09a;
-            transform: scale(0.98);
         }
 
         .warning {
-            color: #ffaa66;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
+            color: #aaa;
             text-align: center;
-            margin-top: 1.2rem;
+            margin-top: 1rem;
         }
 
-        .note {
-            background: #ffeedd10;
-            border-left: 3px solid #ffaa66;
-            padding: 0.7rem;
-            border-radius: 0.8rem;
-            font-size: 0.8rem;
-            margin: 1rem 0;
-        }
-
-        .product-select {
-            display: flex;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .product-btn {
-            background: #1e1e26;
-            border: none;
-            color: #ccc;
-            padding: 0.5rem 1rem;
-            border-radius: 2rem;
-            cursor: pointer;
-            transition: 0.1s;
-        }
-
-        .product-btn.active {
-            background: #7cffb0;
-            color: #000;
-            font-weight: bold;
+        @media (max-width: 900px) {
+            .shop-layout {
+                grid-template-columns: 1fr;
+            }
+            .checkout {
+                position: static;
+            }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="glass-card">
-        <div class="badge">
-            <span class="active">🇺🇦 UAH</span>
-            <span>💳 Карта</span>
-        </div>
-        <h1>DonateCase</h1>
-        <div class="sub">Покупка токенов / кейсов / баланс</div>
+    <div class="header">
+        <div class="logo">FUNTIME UA</div>
+        <div class="sub">Привілей • Ключі • Токени • Баланс біржі</div>
+    </div>
 
-        <!-- выбор продукта -->
-        <div class="product-select" id="productSelect">
-            <button data-product="case" class="product-btn active">🎁 Донат кейс</button>
-            <button data-product="tokens" class="product-btn">⚡ Токены</button>
-            <button data-product="balance" class="product-btn">💸 Пополнить баланс</button>
+    <div class="shop-layout">
+        <!-- Левая колонка — товары -->
+        <div class="catalog">
+            <div class="category">
+                <h3>🎖️ Привілеї</h3>
+                <div class="items-grid">
+                    <div data-name="Барон" data-price="49" class="item-card"><div class="item-name">Барон</div><div class="item-price">49 ₴</div></div>
+                    <div data-name="Страж" data-price="89" class="item-card"><div class="item-name">Страж</div><div class="item-price">89 ₴</div></div>
+                    <div data-name="Герой" data-price="139" class="item-card"><div class="item-name">Герой</div><div class="item-price">139 ₴</div></div>
+                    <div data-name="Еліта" data-price="579" class="item-card"><div class="item-name">Еліта</div><div class="item-price">579 ₴</div></div>
+                    <div data-name="Титан" data-price="779" class="item-card"><div class="item-name">Титан</div><div class="item-price">779 ₴</div></div>
+                </div>
+            </div>
+            <div class="category">
+                <h3>🔑 Ключі</h3>
+                <div class="items-grid">
+                    <div data-name="Звичайний ключ" data-price="10" class="item-card"><div class="item-name">Звичайний ключ</div><div class="item-price">10 ₴</div></div>
+                    <div data-name="Монетний ключ" data-price="10" class="item-card"><div class="item-name">Монетний ключ</div><div class="item-price">10 ₴</div></div>
+                    <div data-name="Донат ключ" data-price="139" class="item-card"><div class="item-name">Донат ключ</div><div class="item-price">139 ₴</div></div>
+                </div>
+            </div>
+            <div class="category">
+                <h3>💰 Токени / Біржа</h3>
+                <div class="items-grid">
+                    <div data-name="Токени (100 шт)" data-price="15" class="item-card"><div class="item-name">Токени 100</div><div class="item-price">15 ₴</div></div>
+                    <div data-name="Баланс біржі" data-price="15" class="item-card"><div class="item-name">Баланс біржі</div><div class="item-price">15 ₴</div></div>
+                    <div data-name="Розмут" data-price="49" class="item-card"><div class="item-name">Розмут</div><div class="item-price">49 ₴</div></div>
+                    <div data-name="Розбан" data-price="249" class="item-card"><div class="item-name">Розбан</div><div class="item-price">249 ₴</div></div>
+                </div>
+            </div>
         </div>
 
-        <div class="card-details">
-            <div class="row">
-                <span>💳 Номер карты:</span>
-                <strong>5218 3200 0047 2125</strong>
-            </div>
-            <div class="row">
-                <span>👤 Владелец:</span>
-                <strong>KASHIRIN</strong>
-            </div>
-            <div class="row">
-                <span>💰 Сумма (UAH):</span>
-                <input type="number" id="amountInput" class="amount-input" value="300" step="50">
-            </div>
-            <div class="note">
-                ⚠️ <strong>Комментарий:</strong> НИЧЕГО не пишите. Только сумма.
-            </div>
-        </div>
+        <!-- Права колонка — оплата -->
+        <div class="checkout">
+            <h3 style="color:white; margin-bottom:0.5rem;">💎 Ваш вибір</h3>
+            <div id="selectedDisplay" class="selected-item">Товар не вибрано</div>
 
-        <div class="timer">
-            ⏱️ <span id="timer">06:59</span>
-        </div>
+            <div class="card-details">
+                <div>💳 Номер картки:</div>
+                <div class="card-number">5218 3200 0047 2125</div>
+                <div>👤 Власник: <strong>KASHIRIN</strong></div>
+                <div style="margin-top:8px;">💰 Сума: <strong><span id="priceSpan">0</span> ₴</strong></div>
+                <div class="warning" style="margin-top:8px;">⚠️ Не пишіть НІЧОГО в коментар до платежу</div>
+            </div>
 
-        <button id="payBtn" class="btn">✅ Я оплатил(а) — проверить</button>
-        <div class="warning">
-            После нажатия кнопки мы вручную проверим перевод.<br>
-            Товар зачислится в течение 15 минут (админ онлайн).
+            <div class="timer">
+                ⏱️ <span id="timer">06:59</span>
+            </div>
+
+            <button id="payBtn" class="btn">✅ Я сплатив — перевірити</button>
+            <div class="warning">
+                Після натискання кнопки ваш запит буде надіслано адміну.<br>
+                Товар видадуть вручну протягом 15 хв.
+            </div>
         </div>
     </div>
 </div>
 
 <script>
-    // ---------- ТАЙМЕР (7 минут) ----------
-    let timeLeft = 7 * 60; // 420 секунд
+    // ---------- ВИБІР ТОВАРУ ----------
+    let selectedItem = { name: null, price: 0 };
+    const selectedDisplay = document.getElementById('selectedDisplay');
+    const priceSpan = document.getElementById('priceSpan');
+
+    const itemCards = document.querySelectorAll('.item-card');
+    itemCards.forEach(card => {
+        card.addEventListener('click', () => {
+            // прибираємо активний клас з усіх
+            itemCards.forEach(c => c.classList.remove('active'));
+            card.classList.add('active');
+
+            const name = card.getAttribute('data-name');
+            const price = parseInt(card.getAttribute('data-price'));
+            selectedItem = { name, price };
+            selectedDisplay.innerText = `${name} — ${price} ₴`;
+            priceSpan.innerText = price;
+        });
+    });
+
+    // ---------- ТАЙМЕР (7 хвилин) ----------
+    let timeLeft = 7 * 60;
     const timerEl = document.getElementById('timer');
 
     function updateTimerDisplay() {
@@ -243,53 +296,27 @@
         if (timeLeft <= 0) {
             clearInterval(timerInterval);
             timerEl.innerText = "00:00";
-            alert("Время сессии истекло. Обновите страницу для создания нового запроса.");
+            alert("Час сесії вийшов. Оновіть сторінку для нової заявки.");
         } else {
             timeLeft--;
             updateTimerDisplay();
         }
     }, 1000);
 
-    // ---------- выбор продукта (стилизация) ----------
-    let currentProduct = "case"; // case, tokens, balance
-    const productBtns = document.querySelectorAll('.product-btn');
-    productBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            productBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentProduct = btn.dataset.product;
-            // можно менять минимальную сумму под продукт
-            const amountInput = document.getElementById('amountInput');
-            if (currentProduct === "tokens") amountInput.min = 100;
-            else if (currentProduct === "balance") amountInput.min = 50;
-            else amountInput.min = 50;
-        });
-    });
-
-    // ---------- кнопка "я оплатил" ----------
-    const payBtn = document.getElementById('payBtn');
-    const amountInput = document.getElementById('amountInput');
-
-    payBtn.addEventListener('click', () => {
-        let amount = parseFloat(amountInput.value);
-        if (isNaN(amount) || amount < 50) {
-            alert("❌ Минимальная сумма 50 UAH");
+    // ---------- КНОПКА "Я ОПЛАТИВ" ----------
+    document.getElementById('payBtn').addEventListener('click', () => {
+        if (!selectedItem.name) {
+            alert("❌ Виберіть товар!");
             return;
         }
-
-        // Здесь вы просто сохраняете заявку. Бесплатно можно слать в телеграм бота через Webhook (но это уже доп настройка)
-        // Сделаем простой вариант: копируем в буфер и сообщаем пользователю
-        const message = `✅ НОВАЯ ЗАЯВКА\nПродукт: ${currentProduct}\nСумма: ${amount} UAH\nВремя: ${new Date().toLocaleString()}\nКарта: 5218 3200 0047 2125`;
-        console.log(message);
+        const amount = selectedItem.price;
+        const message = `🟢 НОВА ЗАЯВКА FUNTIME UA\nТовар: ${selectedItem.name}\nСума: ${amount} грн\nЧас: ${new Date().toLocaleString()}\nКартка: 5218 3200 0047 2125`;
         
-        // Можно открыть почту / ссылку на админа telegram (но проще скопировать данные)
         navigator.clipboard.writeText(message).then(() => {
-            alert(`✅ Заявка скопирована! Отправьте её администратору в Telegram/Instagram.\nСумма: ${amount} UAH\nОжидайте начисления вручную.`);
+            alert(`✅ Заявка скопійована! Надішліть її адміністратору.\nСума до сплати: ${amount} грн\nПісля оплати товар видадуть вручну.`);
         }).catch(() => {
-            alert(`✅ Заявка создана: ${amount} UAH. Свяжитесь с поддержкой (telegram) для проверки.`);
+            alert(`✅ Заявка створена: ${selectedItem.name} — ${amount} грн. Зв'яжіться з підтримкою.`);
         });
-
-        // Дополнительно: можно обнулить таймер? Нет, пусть остаётся.
     });
 
     updateTimerDisplay();
