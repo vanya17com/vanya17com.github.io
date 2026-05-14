@@ -1,325 +1,237 @@
 <!DOCTYPE html>
-<html lang="uk">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funtime UA | Донат-магазин</title>
+    <title>FunTime | Premium Store</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        /* CSS Variables for easy B&W management */
+        :root {
+            --bg-color: #0a0a0a;
+            --surface-color: #141414;
+            --border-color: #333333;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent-color: #ffffff;
+            --hover-bg: #1f1f1f;
         }
 
         body {
-            background: #0a0a0f;
-            background-image: radial-gradient(circle at 20% 30%, rgba(80, 70, 180, 0.15) 0%, #0a0a0f 90%);
-            min-height: 100vh;
-            padding: 2rem 1rem;
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
         }
 
-        /* Главная сетка */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        /* Шапка */
-        .header {
-            text-align: center;
-            margin-bottom: 3rem;
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            border-bottom: 1px solid var(--border-color);
+            background: rgba(10, 10, 10, 0.9);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
-            font-size: 2.5rem;
+            font-size: 1.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+            text-transform: uppercase;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 10%;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
             font-weight: 800;
-            background: linear-gradient(135deg, #fff, #9b87f5);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: -0.02em;
         }
 
-        .sub {
-            color: #7a7a8a;
-            margin-top: 0.5rem;
+        .hero p {
+            color: var(--text-secondary);
         }
 
-        /* Две колонки */
-        .shop-layout {
+        /* Product Grid */
+        .container {
+            padding: 60px 10%;
+        }
+
+        .grid {
             display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 25px;
         }
 
-        /* Каталог товаров */
-        .catalog {
-            background: rgba(15, 15, 20, 0.6);
-            backdrop-filter: blur(8px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-        }
-
-        .category {
-            margin-bottom: 2rem;
-        }
-
-        .category h3 {
-            color: #9b87f5;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            letter-spacing: -0.3px;
-            border-left: 3px solid #9b87f5;
-            padding-left: 0.8rem;
-        }
-
-        .items-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-            gap: 0.8rem;
-        }
-
-        .item-card {
-            background: #111115;
-            border: 1px solid #22222a;
-            border-radius: 1.2rem;
-            padding: 0.8rem;
+        .card {
+            background: var(--surface-color);
+            border: 1px solid var(--border-color);
+            padding: 30px;
             text-align: center;
+            transition: transform 0.2s, border-color 0.2s;
             cursor: pointer;
-            transition: all 0.2s;
         }
 
-        .item-card:hover {
-            border-color: #9b87f5;
-            transform: translateY(-2px);
-            background: #18181e;
+        .card:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
         }
 
-        .item-card.active {
-            border-color: #7cffb0;
-            background: #1a2420;
-            box-shadow: 0 0 12px rgba(124, 255, 176, 0.2);
-        }
-
-        .item-name {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .item-price {
-            color: #7cffb0;
-            font-weight: 700;
-            font-size: 1rem;
-            margin-top: 0.3rem;
-        }
-
-        /* Корзина / оплата */
-        .checkout {
-            background: rgba(12, 12, 16, 0.8);
-            backdrop-filter: blur(12px);
-            border-radius: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 1.5rem;
-            height: fit-content;
-            position: sticky;
-            top: 1rem;
-        }
-
-        .selected-item {
-            background: #111115;
-            border-radius: 1.2rem;
-            padding: 1rem;
-            margin: 1rem 0;
-        }
-
-        .card-details {
-            background: #0c0c10;
-            border-radius: 1.2rem;
-            padding: 1rem;
-            margin: 1rem 0;
-            font-size: 0.9rem;
-        }
-
-        .card-number {
-            font-family: monospace;
+        .card h3 {
+            margin: 0 0 10px 0;
             font-size: 1.2rem;
+            text-transform: uppercase;
             letter-spacing: 1px;
-            margin: 0.5rem 0;
-            word-break: break-all;
         }
 
-        .timer {
-            background: #1a1a22;
-            text-align: center;
-            padding: 0.8rem;
-            border-radius: 2rem;
-            font-family: monospace;
-            font-size: 1.6rem;
-            font-weight: 700;
-            margin: 1rem 0;
-            color: #ffd966;
+        .price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block;
         }
 
         .btn {
-            background: #7cffb0;
-            color: #000;
-            font-weight: 700;
-            padding: 1rem;
-            width: 100%;
-            border: none;
-            border-radius: 1.8rem;
-            font-size: 1rem;
+            display: inline-block;
+            background: var(--accent-color);
+            color: black;
+            padding: 10px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            border-radius: 2px;
+        }
+
+        /* Server Selection Bar */
+        .server-select {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .server-btn {
+            padding: 8px 20px;
+            border: 1px solid var(--border-color);
+            background: transparent;
+            color: var(--text-secondary);
             cursor: pointer;
-            transition: 0.2s;
         }
 
-        .btn:hover {
-            background: #5ee09a;
+        .server-btn.active {
+            border-color: var(--accent-color);
+            color: var(--accent-color);
         }
 
-        .warning {
-            font-size: 0.7rem;
-            color: #aaa;
+        /* Footer */
+        footer {
+            margin-top: 100px;
+            padding: 40px 10%;
+            border-top: 1px solid var(--border-color);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
             text-align: center;
-            margin-top: 1rem;
         }
 
-        @media (max-width: 900px) {
-            .shop-layout {
-                grid-template-columns: 1fr;
-            }
-            .checkout {
-                position: static;
-            }
+        .legal-links a {
+            color: var(--text-secondary);
+            margin: 0 10px;
         }
     </style>
 </head>
 <body>
-<div class="container">
-    <div class="header">
-        <div class="logo">FUNTIME UA</div>
-        <div class="sub">Привілей • Ключі • Токени • Баланс біржі</div>
-    </div>
 
-    <div class="shop-layout">
-        <!-- Левая колонка — товары -->
-        <div class="catalog">
-            <div class="category">
-                <h3>🎖️ Привілеї</h3>
-                <div class="items-grid">
-                    <div data-name="Барон" data-price="49" class="item-card"><div class="item-name">Барон</div><div class="item-price">49 ₴</div></div>
-                    <div data-name="Страж" data-price="89" class="item-card"><div class="item-name">Страж</div><div class="item-price">89 ₴</div></div>
-                    <div data-name="Герой" data-price="139" class="item-card"><div class="item-name">Герой</div><div class="item-price">139 ₴</div></div>
-                    <div data-name="Еліта" data-price="579" class="item-card"><div class="item-name">Еліта</div><div class="item-price">579 ₴</div></div>
-                    <div data-name="Титан" data-price="779" class="item-card"><div class="item-name">Титан</div><div class="item-price">779 ₴</div></div>
-                </div>
-            </div>
-            <div class="category">
-                <h3>🔑 Ключі</h3>
-                <div class="items-grid">
-                    <div data-name="Звичайний ключ" data-price="10" class="item-card"><div class="item-name">Звичайний ключ</div><div class="item-price">10 ₴</div></div>
-                    <div data-name="Монетний ключ" data-price="10" class="item-card"><div class="item-name">Монетний ключ</div><div class="item-price">10 ₴</div></div>
-                    <div data-name="Донат ключ" data-price="139" class="item-card"><div class="item-name">Донат ключ</div><div class="item-price">139 ₴</div></div>
-                </div>
-            </div>
-            <div class="category">
-                <h3>💰 Токени / Біржа</h3>
-                <div class="items-grid">
-                    <div data-name="Токени (100 шт)" data-price="15" class="item-card"><div class="item-name">Токени 100</div><div class="item-price">15 ₴</div></div>
-                    <div data-name="Баланс біржі" data-price="15" class="item-card"><div class="item-name">Баланс біржі</div><div class="item-price">15 ₴</div></div>
-                    <div data-name="Розмут" data-price="49" class="item-card"><div class="item-name">Розмут</div><div class="item-price">49 ₴</div></div>
-                    <div data-name="Розбан" data-price="249" class="item-card"><div class="item-name">Розбан</div><div class="item-price">249 ₴</div></div>
-                </div>
-            </div>
+    <nav>
+        <div class="logo">FUNTIME.SU</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Rules</a>
+            <a href="#">Promotions</a>
+            <a href="#">Contacts</a>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>PREMIUM STORE</h1>
+        <p>Enhance your gameplay experience with exclusive ranks and items.</p>
+    </section>
+
+    <div class="container">
+        <div class="server-select">
+            <button class="server-btn active">ANARCHY</button>
+            <button class="server-btn">GRIEF</button>
+            <button class="server-btn">CREATIVE</button>
         </div>
 
-        <!-- Права колонка — оплата -->
-        <div class="checkout">
-            <h3 style="color:white; margin-bottom:0.5rem;">💎 Ваш вибір</h3>
-            <div id="selectedDisplay" class="selected-item">Товар не вибрано</div>
-
-            <div class="card-details">
-                <div>💳 Номер картки:</div>
-                <div class="card-number">5218 3200 0047 2125</div>
-                <div>👤 Власник: <strong>KASHIRIN</strong></div>
-                <div style="margin-top:8px;">💰 Сума: <strong><span id="priceSpan">0</span> ₴</strong></div>
-                <div class="warning" style="margin-top:8px;">⚠️ Не пишіть НІЧОГО в коментар до платежу</div>
+        <div class="grid">
+            <div class="card">
+                <h3>BARON</h3>
+                <span class="price">49 RUB</span>
+                <a href="#" class="btn">View Details</a>
             </div>
 
-            <div class="timer">
-                ⏱️ <span id="timer">06:59</span>
+            <div class="card">
+                <h3>HERO</h3>
+                <span class="price">139 RUB</span>
+                <a href="#" class="btn">View Details</a>
             </div>
 
-            <button id="payBtn" class="btn">✅ Я сплатив — перевірити</button>
-            <div class="warning">
-                Після натискання кнопки ваш запит буде надіслано адміну.<br>
-                Товар видадуть вручну протягом 15 хв.
+            <div class="card">
+                <h3>TITAN</h3>
+                <span class="price">779 RUB</span>
+                <a href="#" class="btn">View Details</a>
+            </div>
+
+            <div class="card">
+                <h3>PRINCE</h3>
+                <span class="price">979 RUB</span>
+                <a href="#" class="btn">View Details</a>
+            </div>
+
+            <div class="card">
+                <h3>DONATE KEY</h3>
+                <span class="price">139 RUB</span>
+                <a href="#" class="btn">Purchase</a>
+            </div>
+
+            <div class="card">
+                <h3>UNBAN</h3>
+                <span class="price">249 RUB</span>
+                <a href="#" class="btn">Purchase</a>
             </div>
         </div>
     </div>
-</div>
 
-<script>
-    // ---------- ВИБІР ТОВАРУ ----------
-    let selectedItem = { name: null, price: 0 };
-    const selectedDisplay = document.getElementById('selectedDisplay');
-    const priceSpan = document.getElementById('priceSpan');
+    <footer>
+        <p>&copy; 2024 FUNTIME.SU | NOT AN OFFICIAL MINECRAFT PRODUCT.</p>
+        <div class="legal-links">
+            <a href="#">User Agreement</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+    </footer>
 
-    const itemCards = document.querySelectorAll('.item-card');
-    itemCards.forEach(card => {
-        card.addEventListener('click', () => {
-            // прибираємо активний клас з усіх
-            itemCards.forEach(c => c.classList.remove('active'));
-            card.classList.add('active');
-
-            const name = card.getAttribute('data-name');
-            const price = parseInt(card.getAttribute('data-price'));
-            selectedItem = { name, price };
-            selectedDisplay.innerText = `${name} — ${price} ₴`;
-            priceSpan.innerText = price;
-        });
-    });
-
-    // ---------- ТАЙМЕР (7 хвилин) ----------
-    let timeLeft = 7 * 60;
-    const timerEl = document.getElementById('timer');
-
-    function updateTimerDisplay() {
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        timerEl.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }
-
-    const timerInterval = setInterval(() => {
-        if (timeLeft <= 0) {
-            clearInterval(timerInterval);
-            timerEl.innerText = "00:00";
-            alert("Час сесії вийшов. Оновіть сторінку для нової заявки.");
-        } else {
-            timeLeft--;
-            updateTimerDisplay();
-        }
-    }, 1000);
-
-    // ---------- КНОПКА "Я ОПЛАТИВ" ----------
-    document.getElementById('payBtn').addEventListener('click', () => {
-        if (!selectedItem.name) {
-            alert("❌ Виберіть товар!");
-            return;
-        }
-        const amount = selectedItem.price;
-        const message = `🟢 НОВА ЗАЯВКА FUNTIME UA\nТовар: ${selectedItem.name}\nСума: ${amount} грн\nЧас: ${new Date().toLocaleString()}\nКартка: 5218 3200 0047 2125`;
-        
-        navigator.clipboard.writeText(message).then(() => {
-            alert(`✅ Заявка скопійована! Надішліть її адміністратору.\nСума до сплати: ${amount} грн\nПісля оплати товар видадуть вручну.`);
-        }).catch(() => {
-            alert(`✅ Заявка створена: ${selectedItem.name} — ${amount} грн. Зв'яжіться з підтримкою.`);
-        });
-    });
-
-    updateTimerDisplay();
-</script>
 </body>
 </html>
