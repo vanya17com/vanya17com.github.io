@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>VOID STORE</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FuntimeUA</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -17,246 +17,285 @@
 
 body{
     background:#050505;
+    font-family:'Montserrat',sans-serif;
     color:white;
-    font-family:'Inter',sans-serif;
     overflow-x:hidden;
+}
+
+/* BACKGROUND */
+
+.bg{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+    linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.88)),
+    url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop');
+    background-size:cover;
+    background-position:center;
+    z-index:-1;
 }
 
 /* NAVBAR */
 
 nav{
     width:100%;
-    padding:25px 80px;
+    padding:30px 70px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    position:fixed;
-    top:0;
-    z-index:1000;
-    background:rgba(0,0,0,0.65);
-    backdrop-filter:blur(10px);
     border-bottom:1px solid rgba(255,255,255,0.08);
+    background:rgba(0,0,0,0.55);
+    backdrop-filter:blur(12px);
 }
 
-.logo{
-    font-size:28px;
-    font-weight:700;
-    letter-spacing:4px;
+.logo h1{
+    font-size:42px;
+    font-weight:800;
+    letter-spacing:3px;
 }
 
-nav ul{
+.logo p{
+    font-size:12px;
+    letter-spacing:6px;
+    opacity:0.7;
+}
+
+/* MENU */
+
+.menu{
     display:flex;
-    list-style:none;
-    gap:40px;
+    gap:50px;
 }
 
-nav a{
-    color:white;
+.menu a{
+    color:#9f9f9f;
     text-decoration:none;
-    font-size:14px;
+    font-weight:600;
     transition:0.3s;
 }
 
-nav a:hover{
-    opacity:0.5;
+.menu a:hover{
+    color:white;
+}
+
+/* ONLINE */
+
+.online{
+    border:1px solid rgba(255,255,255,0.1);
+    padding:18px 35px;
+    border-radius:12px;
+    font-weight:600;
+    background:rgba(255,255,255,0.03);
 }
 
 /* HERO */
 
 .hero{
-    height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
+    padding:70px 20px;
     text-align:center;
-    padding:0 20px;
-    background:
-    radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 40%),
-    #050505;
 }
 
-.hero-content h1{
-    font-size:90px;
-    font-weight:700;
-    letter-spacing:10px;
-    margin-bottom:20px;
-}
-
-.hero-content p{
-    color:#a0a0a0;
-    font-size:18px;
-    max-width:700px;
+.top-text{
+    font-size:22px;
+    max-width:1000px;
     margin:auto;
-    line-height:1.7;
+    line-height:1.8;
+    color:#d8d8d8;
 }
 
-.hero-buttons{
+.top-text span{
+    color:white;
+    font-weight:700;
+}
+
+.main-title{
+    font-size:160px;
+    font-weight:800;
+    letter-spacing:10px;
     margin-top:40px;
+}
+
+.subtitle{
+    margin-top:10px;
+    letter-spacing:12px;
+    color:#7f7f7f;
+    font-size:26px;
+}
+
+/* CARDS */
+
+.cards{
+    margin-top:70px;
     display:flex;
     justify-content:center;
-    gap:20px;
-}
-
-.btn{
-    padding:15px 35px;
-    border-radius:14px;
-    text-decoration:none;
-    font-weight:600;
-    transition:0.3s;
-}
-
-.btn-white{
-    background:white;
-    color:black;
-}
-
-.btn-white:hover{
-    transform:translateY(-4px);
-}
-
-.btn-outline{
-    border:1px solid rgba(255,255,255,0.2);
-    color:white;
-}
-
-.btn-outline:hover{
-    background:white;
-    color:black;
-}
-
-/* PRODUCTS */
-
-.section{
-    padding:120px 80px;
-}
-
-.section-title{
-    font-size:48px;
-    margin-bottom:60px;
-    text-align:center;
-}
-
-.products{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-    gap:30px;
+    gap:40px;
+    flex-wrap:wrap;
 }
 
 .card{
-    background:rgba(255,255,255,0.03);
+    width:520px;
+    background:rgba(0,0,0,0.65);
     border:1px solid rgba(255,255,255,0.08);
-    border-radius:24px;
-    padding:35px;
-    transition:0.4s;
+    border-radius:20px;
+    padding:40px;
+    backdrop-filter:blur(12px);
     position:relative;
     overflow:hidden;
 }
 
-.card:hover{
-    transform:translateY(-10px);
-    border-color:white;
-}
-
 .card::before{
-    content:"";
+    content:'';
     position:absolute;
-    top:-100px;
-    right:-100px;
-    width:200px;
-    height:200px;
-    background:rgba(255,255,255,0.05);
+    width:300px;
+    height:300px;
+    background:rgba(255,255,255,0.03);
     border-radius:50%;
+    top:-150px;
+    right:-120px;
 }
 
-.card h3{
-    font-size:28px;
-    margin-bottom:15px;
+.card-top{
+    display:flex;
+    align-items:center;
+    gap:30px;
 }
 
-.price{
-    font-size:40px;
-    margin:20px 0;
-    font-weight:700;
+.icon{
+    width:110px;
+    height:110px;
+    border:1px solid rgba(255,255,255,0.12);
+    border-radius:20px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+    background:rgba(255,255,255,0.02);
+}
+
+.card h2{
+    font-size:52px;
+    margin-bottom:10px;
 }
 
 .card p{
-    color:#a0a0a0;
-    line-height:1.6;
+    color:#b0b0b0;
+    line-height:1.7;
+    font-size:18px;
+}
+
+.price-text{
+    margin-top:50px;
+    color:#8e8e8e;
+    font-size:22px;
+}
+
+.price{
+    font-size:62px;
+    font-weight:800;
+    margin-top:10px;
 }
 
 .buy-btn{
     margin-top:30px;
     width:100%;
-    padding:14px;
-    border:none;
+    height:85px;
+    border:1px solid rgba(255,255,255,0.12);
+    background:black;
+    color:white;
+    font-size:26px;
+    font-weight:700;
     border-radius:14px;
-    background:white;
-    color:black;
-    font-weight:600;
     cursor:pointer;
     transition:0.3s;
 }
 
 .buy-btn:hover{
-    opacity:0.8;
+    background:white;
+    color:black;
 }
 
 /* STATS */
 
 .stats{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:30px;
-    margin-top:70px;
+    margin-top:100px;
+    padding:60px 40px;
+    border-top:1px solid rgba(255,255,255,0.08);
+    display:flex;
+    justify-content:center;
+    gap:100px;
+    flex-wrap:wrap;
 }
 
-.stat-box{
-    padding:40px;
-    border-radius:24px;
-    background:rgba(255,255,255,0.03);
+.stat{
     text-align:center;
 }
 
-.stat-box h2{
-    font-size:50px;
-    margin-bottom:10px;
+.stat h3{
+    font-size:48px;
 }
 
-.stat-box p{
-    color:#999;
+.stat p{
+    margin-top:10px;
+    color:#8a8a8a;
+    font-size:20px;
 }
 
 /* FOOTER */
 
 footer{
-    padding:60px 20px;
     text-align:center;
-    border-top:1px solid rgba(255,255,255,0.08);
-    color:#777;
+    padding:30px;
+    color:#6d6d6d;
 }
 
 /* MOBILE */
 
-@media(max-width:900px){
+@media(max-width:1100px){
+
+    .main-title{
+        font-size:90px;
+    }
+
+    .subtitle{
+        font-size:18px;
+        letter-spacing:6px;
+    }
 
     nav{
-        padding:20px;
+        flex-direction:column;
+        gap:25px;
+        padding:30px 20px;
     }
 
-    nav ul{
-        display:none;
+    .menu{
+        gap:20px;
+        flex-wrap:wrap;
+        justify-content:center;
     }
 
-    .hero-content h1{
-        font-size:50px;
+}
+
+@media(max-width:700px){
+
+    .main-title{
+        font-size:60px;
     }
 
-    .section{
-        padding:100px 20px;
+    .top-text{
+        font-size:18px;
     }
 
-    .section-title{
+    .card{
+        width:100%;
+    }
+
+    .card h2{
         font-size:38px;
+    }
+
+    .price{
+        font-size:44px;
     }
 
 }
@@ -265,82 +304,129 @@ footer{
 </head>
 <body>
 
-<nav>
-    <div class="logo">VOID</div>
+<div class="bg"></div>
 
-    <ul>
-        <li><a href="#">HOME</a></li>
-        <li><a href="#">STORE</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">RULES</a></li>
-        <li><a href="#">DISCORD</a></li>
-    </ul>
+<nav>
+
+    <div class="logo">
+        <h1>FUNTIME</h1>
+        <p>FUNTIMEUA</p>
+    </div>
+
+    <div class="menu">
+        <a href="#">ГЛАВНАЯ</a>
+        <a href="#">МАГАЗИН</a>
+        <a href="#">БИРЖА</a>
+        <a href="#">ПРАВИЛА</a>
+        <a href="#">ПОДДЕРЖКА</a>
+    </div>
+
+    <div class="online">
+        ONLINE: 1028
+    </div>
+
 </nav>
 
 <section class="hero">
 
-    <div class="hero-content">
-
-        <h1>VOID STORE</h1>
-
-        <p>
-            Premium Minecraft server store with a modern monochrome design.
-            Buy ranks, kits, cosmetics and support the server.
-        </p>
-
-        <div class="hero-buttons">
-            <a href="#" class="btn btn-white">ENTER STORE</a>
-            <a href="#" class="btn btn-outline">JOIN DISCORD</a>
-        </div>
-
+    <div class="top-text">
+        ⚪ <span>Биржа Баланс</span> — это валюта, при помощи которой можно покупать товары в <span>Бирже</span> на сервере по команде <span>/dm</span>
     </div>
 
-</section>
+    <h1 class="main-title">FUNTIME</h1>
 
-<section class="section">
+    <div class="subtitle">
+        МАГАЗИН СЕРВЕРА FUNTIMEUA
+    </div>
 
-    <h2 class="section-title">POPULAR PRODUCTS</h2>
+    <div class="cards">
 
-    <div class="products">
+        <!-- DK -->
 
         <div class="card">
-            <h3>VIP</h3>
-            <p>Starter donation package with basic perks and cosmetics.</p>
-            <div class="price">€4.99</div>
-            <button class="buy-btn">BUY NOW</button>
+
+            <div class="card-top">
+
+                <div class="icon">♛</div>
+
+                <div>
+                    <h2>ДК</h2>
+
+                    <p>
+                        Доступ к донат возможностям
+                        и уникальным привилегиям.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="price-text">
+                СТОИМОСТЬ:
+            </div>
+
+            <div class="price">
+                135 грн
+            </div>
+
         </div>
 
-        <div class="card">
-            <h3>PREMIUM</h3>
-            <p>Advanced features, private kits and server bonuses.</p>
-            <div class="price">€12.99</div>
-            <button class="buy-btn">BUY NOW</button>
-        </div>
+        <!-- BIRZHA -->
 
         <div class="card">
-            <h3>LEGEND</h3>
-            <p>Exclusive rank with special abilities and visual effects.</p>
-            <div class="price">€24.99</div>
-            <button class="buy-btn">BUY NOW</button>
+
+            <div class="card-top">
+
+                <div class="icon">₴</div>
+
+                <div>
+                    <h2>БИРЖА БАЛАНС</h2>
+
+                    <p>
+                        1 грн = 1 шт.
+                        <br><br>
+                        Валюта, которую можно использовать
+                        на Бирже сервера по команде /dm.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="price-text">
+                СТОИМОСТЬ:
+            </div>
+
+            <div class="price">
+                1 грн
+            </div>
+
+            <button class="buy-btn">
+                ПРИОБРЕСТИ
+            </button>
+
         </div>
 
     </div>
 
     <div class="stats">
 
-        <div class="stat-box">
-            <h2>12K+</h2>
-            <p>Players</p>
+        <div class="stat">
+            <h3>12K+</h3>
+            <p>Игроков</p>
         </div>
 
-        <div class="stat-box">
-            <h2>99%</h2>
-            <p>Uptime</p>
+        <div class="stat">
+            <h3>99%</h3>
+            <p>Онлайн</p>
         </div>
 
-        <div class="stat-box">
-            <h2>24/7</h2>
-            <p>Support</p>
+        <div class="stat">
+            <h3>24/7</h3>
+            <p>Поддержка</p>
+        </div>
+
+        <div class="stat">
+            <h3>TPS 20</h3>
+            <p>Стабильность</p>
         </div>
 
     </div>
@@ -348,7 +434,7 @@ footer{
 </section>
 
 <footer>
-    © 2026 VOID STORE. All rights reserved.
+    © 2026 FuntimeUA. Все права защищены.
 </footer>
 
 </body>
