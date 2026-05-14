@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FuntimeUA</title>
+<title>FuntimeUA Shop</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
@@ -29,117 +29,56 @@ body{
     width:100%;
     height:100%;
     background:
-    linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.88)),
+    linear-gradient(rgba(0,0,0,0.88), rgba(0,0,0,0.93)),
     url('https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=2071&auto=format&fit=crop');
     background-size:cover;
     background-position:center;
     z-index:-1;
 }
 
-/* NAVBAR */
+/* MAIN */
 
-nav{
+.container{
     width:100%;
-    padding:30px 70px;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    border-bottom:1px solid rgba(255,255,255,0.08);
-    background:rgba(0,0,0,0.55);
-    backdrop-filter:blur(12px);
+    max-width:1300px;
+    margin:auto;
+    padding:50px 20px 100px;
+}
+
+/* TITLE */
+
+.logo{
+    text-align:center;
+    margin-bottom:70px;
 }
 
 .logo h1{
-    font-size:42px;
+    font-size:130px;
     font-weight:800;
-    letter-spacing:3px;
+    letter-spacing:8px;
 }
 
 .logo p{
-    font-size:12px;
-    letter-spacing:6px;
-    opacity:0.7;
-}
-
-/* MENU */
-
-.menu{
-    display:flex;
-    gap:50px;
-}
-
-.menu a{
-    color:#9f9f9f;
-    text-decoration:none;
-    font-weight:600;
-    transition:0.3s;
-}
-
-.menu a:hover{
-    color:white;
-}
-
-/* ONLINE */
-
-.online{
-    border:1px solid rgba(255,255,255,0.1);
-    padding:18px 35px;
-    border-radius:12px;
-    font-weight:600;
-    background:rgba(255,255,255,0.03);
-}
-
-/* HERO */
-
-.hero{
-    padding:70px 20px;
-    text-align:center;
-}
-
-.top-text{
-    font-size:22px;
-    max-width:1000px;
-    margin:auto;
-    line-height:1.8;
-    color:#d8d8d8;
-}
-
-.top-text span{
-    color:white;
-    font-weight:700;
-}
-
-.main-title{
-    font-size:160px;
-    font-weight:800;
+    color:#8e8e8e;
     letter-spacing:10px;
-    margin-top:40px;
-}
-
-.subtitle{
     margin-top:10px;
-    letter-spacing:12px;
-    color:#7f7f7f;
-    font-size:26px;
+    font-size:22px;
 }
 
-/* CARDS */
+/* PRODUCTS */
 
-.cards{
-    margin-top:70px;
-    display:flex;
-    justify-content:center;
-    gap:40px;
-    flex-wrap:wrap;
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(360px,1fr));
+    gap:35px;
 }
 
 .card{
-    width:520px;
-    background:rgba(0,0,0,0.65);
+    background:rgba(0,0,0,0.7);
     border:1px solid rgba(255,255,255,0.08);
-    border-radius:20px;
-    padding:40px;
-    backdrop-filter:blur(12px);
+    border-radius:24px;
+    padding:35px;
+    backdrop-filter:blur(10px);
     position:relative;
     overflow:hidden;
 }
@@ -147,155 +86,200 @@ nav{
 .card::before{
     content:'';
     position:absolute;
-    width:300px;
-    height:300px;
+    width:250px;
+    height:250px;
     background:rgba(255,255,255,0.03);
     border-radius:50%;
-    top:-150px;
-    right:-120px;
-}
-
-.card-top{
-    display:flex;
-    align-items:center;
-    gap:30px;
-}
-
-.icon{
-    width:110px;
-    height:110px;
-    border:1px solid rgba(255,255,255,0.12);
-    border-radius:20px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:50px;
-    background:rgba(255,255,255,0.02);
+    top:-120px;
+    right:-100px;
 }
 
 .card h2{
-    font-size:52px;
-    margin-bottom:10px;
+    font-size:48px;
+    margin-bottom:25px;
 }
 
 .card p{
-    color:#b0b0b0;
+    color:#9f9f9f;
     line-height:1.7;
-    font-size:18px;
+    margin-bottom:30px;
 }
 
-.price-text{
-    margin-top:50px;
-    color:#8e8e8e;
+/* INPUTS */
+
+.input-box{
+    margin-top:20px;
+}
+
+.input-box label{
+    display:block;
+    margin-bottom:10px;
+    color:#8f8f8f;
+    font-size:14px;
+}
+
+.input-box input{
+    width:100%;
+    height:65px;
+    background:#101010;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:14px;
+    padding:0 20px;
+    color:white;
+    font-size:18px;
+    outline:none;
+}
+
+/* COUNTER */
+
+.counter{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-top:25px;
+}
+
+.counter button{
+    width:55px;
+    height:55px;
+    border:none;
+    border-radius:14px;
+    background:white;
+    color:black;
+    font-size:26px;
+    font-weight:700;
+    cursor:pointer;
+}
+
+.counter input{
+    width:120px;
+    height:55px;
+    text-align:center;
+    background:#101010;
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:14px;
+    color:white;
     font-size:22px;
 }
 
+/* PRICE */
+
 .price{
-    font-size:62px;
-    font-weight:800;
-    margin-top:10px;
+    margin-top:30px;
+    font-size:18px;
+    color:#8f8f8f;
 }
 
-.buy-btn{
-    margin-top:30px;
-    width:100%;
-    height:85px;
-    border:1px solid rgba(255,255,255,0.12);
-    background:black;
+.price strong{
+    display:block;
+    margin-top:10px;
     color:white;
-    font-size:26px;
+    font-size:52px;
+}
+
+/* BUTTON */
+
+.buy-btn{
+    width:100%;
+    height:80px;
+    border:none;
+    border-radius:16px;
+    background:white;
+    color:black;
+    font-size:24px;
     font-weight:700;
-    border-radius:14px;
+    margin-top:35px;
     cursor:pointer;
     transition:0.3s;
 }
 
 .buy-btn:hover{
-    background:white;
-    color:black;
+    transform:translateY(-3px);
 }
 
-/* STATS */
+/* PAYMENT POPUP */
 
-.stats{
-    margin-top:100px;
-    padding:60px 40px;
-    border-top:1px solid rgba(255,255,255,0.08);
-    display:flex;
+.popup{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,0.85);
+    display:none;
+    align-items:center;
     justify-content:center;
-    gap:100px;
-    flex-wrap:wrap;
+    padding:20px;
+    z-index:999;
 }
 
-.stat{
-    text-align:center;
+.popup-box{
+    width:100%;
+    max-width:520px;
+    background:#ffffff;
+    border-radius:30px;
+    color:black;
+    overflow:hidden;
 }
 
-.stat h3{
-    font-size:48px;
-}
-
-.stat p{
-    margin-top:10px;
-    color:#8a8a8a;
-    font-size:20px;
-}
-
-/* FOOTER */
-
-footer{
-    text-align:center;
+.popup-header{
     padding:30px;
-    color:#6d6d6d;
+    border-bottom:1px solid #ececec;
+    text-align:center;
+}
+
+.popup-header h2{
+    font-size:42px;
+}
+
+.popup-content{
+    padding:30px;
+}
+
+.pay-item{
+    background:#f5f5f5;
+    border-radius:20px;
+    padding:25px;
+    margin-bottom:20px;
+}
+
+.pay-item h4{
+    color:#7c7c7c;
+    margin-bottom:8px;
+}
+
+.pay-item p{
+    font-size:34px;
+    font-weight:700;
+}
+
+.timer{
+    margin-top:25px;
+    font-size:28px;
+    font-weight:700;
+    text-align:center;
+}
+
+.confirm-btn{
+    width:100%;
+    height:75px;
+    border:none;
+    border-radius:18px;
+    background:#00a86b;
+    color:white;
+    font-size:24px;
+    font-weight:700;
+    cursor:pointer;
+    margin-top:30px;
 }
 
 /* MOBILE */
 
-@media(max-width:1100px){
-
-    .main-title{
-        font-size:90px;
-    }
-
-    .subtitle{
-        font-size:18px;
-        letter-spacing:6px;
-    }
-
-    nav{
-        flex-direction:column;
-        gap:25px;
-        padding:30px 20px;
-    }
-
-    .menu{
-        gap:20px;
-        flex-wrap:wrap;
-        justify-content:center;
-    }
-
-}
-
 @media(max-width:700px){
 
-    .main-title{
-        font-size:60px;
+    .logo h1{
+        font-size:70px;
     }
 
-    .top-text{
-        font-size:18px;
-    }
-
-    .card{
-        width:100%;
-    }
-
-    .card h2{
-        font-size:38px;
-    }
-
-    .price{
-        font-size:44px;
+    .products{
+        grid-template-columns:1fr;
     }
 
 }
@@ -306,67 +290,51 @@ footer{
 
 <div class="bg"></div>
 
-<nav>
+<div class="container">
 
     <div class="logo">
         <h1>FUNTIME</h1>
-        <p>FUNTIMEUA</p>
     </div>
 
-    <div class="menu">
-        <a href="#">ГЛАВНАЯ</a>
-        <a href="#">МАГАЗИН</a>
-        <a href="#">БИРЖА</a>
-        <a href="#">ПРАВИЛА</a>
-        <a href="#">ПОДДЕРЖКА</a>
-    </div>
-
-    <div class="online">
-        ONLINE: 1028
-    </div>
-
-</nav>
-
-<section class="hero">
-
-    <div class="top-text">
-        ⚪ <span>Биржа Баланс</span> — это валюта, при помощи которой можно покупать товары в <span>Бирже</span> на сервере по команде <span>/dm</span>
-    </div>
-
-    <h1 class="main-title">FUNTIME</h1>
-
-    <div class="subtitle">
-        МАГАЗИН СЕРВЕРА FUNTIMEUA
-    </div>
-
-    <div class="cards">
+    <div class="products">
 
         <!-- DK -->
 
         <div class="card">
 
-            <div class="card-top">
+            <h2>ДК</h2>
 
-                <div class="icon">♛</div>
+            <p>
+                1 ДК = 135 грн
+                <br><br>
+                2 ДК = 270 грн
+                <br>
+                5 ДК = 675 грн
+                <br>
+                10 ДК = 1350 грн
+            </p>
 
-                <div>
-                    <h2>ДК</h2>
-
-                    <p>
-                        Доступ к донат возможностям
-                        и уникальным привилегиям.
-                    </p>
-                </div>
-
+            <div class="input-box">
+                <label>Ваш ник</label>
+                <input type="text" placeholder="Введите ник">
             </div>
 
-            <div class="price-text">
-                СТОИМОСТЬ:
+            <div class="counter">
+                <button onclick="minus('dk')">-</button>
+
+                <input id="dk-count" value="1">
+
+                <button onclick="plus('dk')">+</button>
             </div>
 
             <div class="price">
-                135 грн
+                Стоимость:
+                <strong id="dk-price">135 грн</strong>
             </div>
+
+            <button class="buy-btn" onclick="openPopup('ДК', document.getElementById('dk-price').innerText)">
+                К ОПЛАТЕ
+            </button>
 
         </div>
 
@@ -374,68 +342,184 @@ footer{
 
         <div class="card">
 
-            <div class="card-top">
+            <h2>БИРЖА БАЛАНС</h2>
 
-                <div class="icon">₴</div>
+            <p>
+                1 Биржа баланс = 1 грн
+            </p>
 
-                <div>
-                    <h2>БИРЖА БАЛАНС</h2>
-
-                    <p>
-                        1 грн = 1 шт.
-                        <br><br>
-                        Валюта, которую можно использовать
-                        на Бирже сервера по команде /dm.
-                    </p>
-                </div>
-
+            <div class="input-box">
+                <label>Ваш ник</label>
+                <input type="text" placeholder="Введите ник">
             </div>
 
-            <div class="price-text">
-                СТОИМОСТЬ:
+            <div class="counter">
+                <button onclick="minus('balance')">-</button>
+
+                <input id="balance-count" value="1">
+
+                <button onclick="plus('balance')">+</button>
             </div>
 
             <div class="price">
-                1 грн
+                Стоимость:
+                <strong id="balance-price">1 грн</strong>
             </div>
 
-            <button class="buy-btn">
-                ПРИОБРЕСТИ
+            <button class="buy-btn" onclick="openPopup('Биржа Баланс', document.getElementById('balance-price').innerText)">
+                К ОПЛАТЕ
+            </button>
+
+        </div>
+
+        <!-- TOKENS -->
+
+        <div class="card">
+
+            <h2>ТОКЕНЫ</h2>
+
+            <p>
+                1K токенов = 9 грн
+            </p>
+
+            <div class="input-box">
+                <label>Ваш ник</label>
+                <input type="text" placeholder="Введите ник">
+            </div>
+
+            <div class="counter">
+                <button onclick="minus('token')">-</button>
+
+                <input id="token-count" value="1">
+
+                <button onclick="plus('token')">+</button>
+            </div>
+
+            <div class="price">
+                Стоимость:
+                <strong id="token-price">9 грн</strong>
+            </div>
+
+            <button class="buy-btn" onclick="openPopup('Токены', document.getElementById('token-price').innerText)">
+                К ОПЛАТЕ
             </button>
 
         </div>
 
     </div>
 
-    <div class="stats">
+</div>
 
-        <div class="stat">
-            <h3>12K+</h3>
-            <p>Игроков</p>
+<!-- POPUP -->
+
+<div class="popup" id="popup">
+
+    <div class="popup-box">
+
+        <div class="popup-header">
+            <h2>Пополнение</h2>
         </div>
 
-        <div class="stat">
-            <h3>99%</h3>
-            <p>Онлайн</p>
-        </div>
+        <div class="popup-content">
 
-        <div class="stat">
-            <h3>24/7</h3>
-            <p>Поддержка</p>
-        </div>
+            <div class="pay-item">
+                <h4>Номер карты</h4>
+                <p>5218 3200 0047 2125</p>
+            </div>
 
-        <div class="stat">
-            <h3>TPS 20</h3>
-            <p>Стабильность</p>
+            <div class="pay-item">
+                <h4>Сумма</h4>
+                <p id="popup-price">300 грн</p>
+            </div>
+
+            <div class="pay-item">
+                <h4>Владелец карты</h4>
+                <p>Kashirin</p>
+            </div>
+
+            <div class="pay-item">
+                <h4>Комментарий</h4>
+                <p>Не пишите ничего!</p>
+            </div>
+
+            <div class="timer">
+                06:59
+            </div>
+
+            <button class="confirm-btn">
+                Я ОПЛАТИЛ
+            </button>
+
         </div>
 
     </div>
 
-</section>
+</div>
 
-<footer>
-    © 2026 FuntimeUA. Все права защищены.
-</footer>
+<script>
+
+/* DK */
+
+function plus(type){
+
+    let input = document.getElementById(type + '-count');
+
+    input.value = parseInt(input.value) + 1;
+
+    update(type);
+}
+
+function minus(type){
+
+    let input = document.getElementById(type + '-count');
+
+    if(parseInt(input.value) > 1){
+        input.value = parseInt(input.value) - 1;
+    }
+
+    update(type);
+}
+
+function update(type){
+
+    let count = parseInt(document.getElementById(type + '-count').value);
+
+    if(type === 'dk'){
+        document.getElementById('dk-price').innerText =
+        (count * 135) + ' грн';
+    }
+
+    if(type === 'balance'){
+        document.getElementById('balance-price').innerText =
+        (count * 1) + ' грн';
+    }
+
+    if(type === 'token'){
+        document.getElementById('token-price').innerText =
+        (count * 9) + ' грн';
+    }
+
+}
+
+/* POPUP */
+
+function openPopup(product, price){
+
+    document.getElementById('popup').style.display = 'flex';
+
+    document.getElementById('popup-price').innerText = price;
+
+}
+
+document.getElementById('popup').addEventListener('click', function(e){
+
+    if(e.target.id === 'popup'){
+        document.getElementById('popup').style.display = 'none';
+    }
+
+});
+
+</script>
 
 </body>
 </html>
