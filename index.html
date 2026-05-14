@@ -1,237 +1,355 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FunTime | Premium Store</title>
-    <style>
-        /* CSS Variables for easy B&W management */
-        :root {
-            --bg-color: #0a0a0a;
-            --surface-color: #141414;
-            --border-color: #333333;
-            --text-primary: #ffffff;
-            --text-secondary: #a0a0a0;
-            --accent-color: #ffffff;
-            --hover-bg: #1f1f1f;
-        }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VOID STORE</title>
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-        /* Navigation */
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px 10%;
-            border-bottom: 1px solid var(--border-color);
-            background: rgba(10, 10, 10, 0.9);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
+<style>
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 900;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            margin-left: 30px;
-            font-size: 0.9rem;
-            transition: color 0.3s;
-        }
+body{
+    background:#050505;
+    color:white;
+    font-family:'Inter',sans-serif;
+    overflow-x:hidden;
+}
 
-        .nav-links a:hover {
-            color: var(--accent-color);
-        }
+/* NAVBAR */
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 80px 10%;
-            border-bottom: 1px solid var(--border-color);
-        }
+nav{
+    width:100%;
+    padding:25px 80px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    top:0;
+    z-index:1000;
+    background:rgba(0,0,0,0.65);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,0.08);
+}
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-            font-weight: 800;
-        }
+.logo{
+    font-size:28px;
+    font-weight:700;
+    letter-spacing:4px;
+}
 
-        .hero p {
-            color: var(--text-secondary);
-        }
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:40px;
+}
 
-        /* Product Grid */
-        .container {
-            padding: 60px 10%;
-        }
+nav a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+    transition:0.3s;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 25px;
-        }
+nav a:hover{
+    opacity:0.5;
+}
 
-        .card {
-            background: var(--surface-color);
-            border: 1px solid var(--border-color);
-            padding: 30px;
-            text-align: center;
-            transition: transform 0.2s, border-color 0.2s;
-            cursor: pointer;
-        }
+/* HERO */
 
-        .card:hover {
-            border-color: var(--accent-color);
-            transform: translateY(-5px);
-        }
+.hero{
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:0 20px;
+    background:
+    radial-gradient(circle at top, rgba(255,255,255,0.08), transparent 40%),
+    #050505;
+}
 
-        .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+.hero-content h1{
+    font-size:90px;
+    font-weight:700;
+    letter-spacing:10px;
+    margin-bottom:20px;
+}
 
-        .price {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 20px;
-            display: block;
-        }
+.hero-content p{
+    color:#a0a0a0;
+    font-size:18px;
+    max-width:700px;
+    margin:auto;
+    line-height:1.7;
+}
 
-        .btn {
-            display: inline-block;
-            background: var(--accent-color);
-            color: black;
-            padding: 10px 25px;
-            text-decoration: none;
-            font-weight: bold;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            border-radius: 2px;
-        }
+.hero-buttons{
+    margin-top:40px;
+    display:flex;
+    justify-content:center;
+    gap:20px;
+}
 
-        /* Server Selection Bar */
-        .server-select {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 50px;
-        }
+.btn{
+    padding:15px 35px;
+    border-radius:14px;
+    text-decoration:none;
+    font-weight:600;
+    transition:0.3s;
+}
 
-        .server-btn {
-            padding: 8px 20px;
-            border: 1px solid var(--border-color);
-            background: transparent;
-            color: var(--text-secondary);
-            cursor: pointer;
-        }
+.btn-white{
+    background:white;
+    color:black;
+}
 
-        .server-btn.active {
-            border-color: var(--accent-color);
-            color: var(--accent-color);
-        }
+.btn-white:hover{
+    transform:translateY(-4px);
+}
 
-        /* Footer */
-        footer {
-            margin-top: 100px;
-            padding: 40px 10%;
-            border-top: 1px solid var(--border-color);
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            text-align: center;
-        }
+.btn-outline{
+    border:1px solid rgba(255,255,255,0.2);
+    color:white;
+}
 
-        .legal-links a {
-            color: var(--text-secondary);
-            margin: 0 10px;
-        }
-    </style>
+.btn-outline:hover{
+    background:white;
+    color:black;
+}
+
+/* PRODUCTS */
+
+.section{
+    padding:120px 80px;
+}
+
+.section-title{
+    font-size:48px;
+    margin-bottom:60px;
+    text-align:center;
+}
+
+.products{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+    gap:30px;
+}
+
+.card{
+    background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:24px;
+    padding:35px;
+    transition:0.4s;
+    position:relative;
+    overflow:hidden;
+}
+
+.card:hover{
+    transform:translateY(-10px);
+    border-color:white;
+}
+
+.card::before{
+    content:"";
+    position:absolute;
+    top:-100px;
+    right:-100px;
+    width:200px;
+    height:200px;
+    background:rgba(255,255,255,0.05);
+    border-radius:50%;
+}
+
+.card h3{
+    font-size:28px;
+    margin-bottom:15px;
+}
+
+.price{
+    font-size:40px;
+    margin:20px 0;
+    font-weight:700;
+}
+
+.card p{
+    color:#a0a0a0;
+    line-height:1.6;
+}
+
+.buy-btn{
+    margin-top:30px;
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:14px;
+    background:white;
+    color:black;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.buy-btn:hover{
+    opacity:0.8;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:30px;
+    margin-top:70px;
+}
+
+.stat-box{
+    padding:40px;
+    border-radius:24px;
+    background:rgba(255,255,255,0.03);
+    text-align:center;
+}
+
+.stat-box h2{
+    font-size:50px;
+    margin-bottom:10px;
+}
+
+.stat-box p{
+    color:#999;
+}
+
+/* FOOTER */
+
+footer{
+    padding:60px 20px;
+    text-align:center;
+    border-top:1px solid rgba(255,255,255,0.08);
+    color:#777;
+}
+
+/* MOBILE */
+
+@media(max-width:900px){
+
+    nav{
+        padding:20px;
+    }
+
+    nav ul{
+        display:none;
+    }
+
+    .hero-content h1{
+        font-size:50px;
+    }
+
+    .section{
+        padding:100px 20px;
+    }
+
+    .section-title{
+        font-size:38px;
+    }
+
+}
+
+</style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">FUNTIME.SU</div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Rules</a>
-            <a href="#">Promotions</a>
-            <a href="#">Contacts</a>
+<nav>
+    <div class="logo">VOID</div>
+
+    <ul>
+        <li><a href="#">HOME</a></li>
+        <li><a href="#">STORE</a></li>
+        <li><a href="#">FAQ</a></li>
+        <li><a href="#">RULES</a></li>
+        <li><a href="#">DISCORD</a></li>
+    </ul>
+</nav>
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>VOID STORE</h1>
+
+        <p>
+            Premium Minecraft server store with a modern monochrome design.
+            Buy ranks, kits, cosmetics and support the server.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#" class="btn btn-white">ENTER STORE</a>
+            <a href="#" class="btn btn-outline">JOIN DISCORD</a>
         </div>
-    </nav>
 
-    <section class="hero">
-        <h1>PREMIUM STORE</h1>
-        <p>Enhance your gameplay experience with exclusive ranks and items.</p>
-    </section>
-
-    <div class="container">
-        <div class="server-select">
-            <button class="server-btn active">ANARCHY</button>
-            <button class="server-btn">GRIEF</button>
-            <button class="server-btn">CREATIVE</button>
-        </div>
-
-        <div class="grid">
-            <div class="card">
-                <h3>BARON</h3>
-                <span class="price">49 RUB</span>
-                <a href="#" class="btn">View Details</a>
-            </div>
-
-            <div class="card">
-                <h3>HERO</h3>
-                <span class="price">139 RUB</span>
-                <a href="#" class="btn">View Details</a>
-            </div>
-
-            <div class="card">
-                <h3>TITAN</h3>
-                <span class="price">779 RUB</span>
-                <a href="#" class="btn">View Details</a>
-            </div>
-
-            <div class="card">
-                <h3>PRINCE</h3>
-                <span class="price">979 RUB</span>
-                <a href="#" class="btn">View Details</a>
-            </div>
-
-            <div class="card">
-                <h3>DONATE KEY</h3>
-                <span class="price">139 RUB</span>
-                <a href="#" class="btn">Purchase</a>
-            </div>
-
-            <div class="card">
-                <h3>UNBAN</h3>
-                <span class="price">249 RUB</span>
-                <a href="#" class="btn">Purchase</a>
-            </div>
-        </div>
     </div>
 
-    <footer>
-        <p>&copy; 2024 FUNTIME.SU | NOT AN OFFICIAL MINECRAFT PRODUCT.</p>
-        <div class="legal-links">
-            <a href="#">User Agreement</a>
-            <a href="#">Privacy Policy</a>
+</section>
+
+<section class="section">
+
+    <h2 class="section-title">POPULAR PRODUCTS</h2>
+
+    <div class="products">
+
+        <div class="card">
+            <h3>VIP</h3>
+            <p>Starter donation package with basic perks and cosmetics.</p>
+            <div class="price">€4.99</div>
+            <button class="buy-btn">BUY NOW</button>
         </div>
-    </footer>
+
+        <div class="card">
+            <h3>PREMIUM</h3>
+            <p>Advanced features, private kits and server bonuses.</p>
+            <div class="price">€12.99</div>
+            <button class="buy-btn">BUY NOW</button>
+        </div>
+
+        <div class="card">
+            <h3>LEGEND</h3>
+            <p>Exclusive rank with special abilities and visual effects.</p>
+            <div class="price">€24.99</div>
+            <button class="buy-btn">BUY NOW</button>
+        </div>
+
+    </div>
+
+    <div class="stats">
+
+        <div class="stat-box">
+            <h2>12K+</h2>
+            <p>Players</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>99%</h2>
+            <p>Uptime</p>
+        </div>
+
+        <div class="stat-box">
+            <h2>24/7</h2>
+            <p>Support</p>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    © 2026 VOID STORE. All rights reserved.
+</footer>
 
 </body>
 </html>
