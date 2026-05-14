@@ -446,8 +446,9 @@ body{
                 06:59
             </div>
 
-            <button class="confirm-btn">
-                Я ОПЛАТИЛ
+            
+            <button class="confirm-btn" onclick="sendOrder()">
+            Я ОПЛАТИЛ
             </button>
 
         </div>
@@ -457,7 +458,61 @@ body{
 </div>
 
 <script>
+let currentProduct = '';
+let currentPrice = '';
+let currentNickname = '';
 
+function openPopup(product, price, nickname){
+
+    currentProduct = product;
+    currentPrice = price;
+    currentNickname = nickname;
+
+    document.getElementById('popup').style.display = 'flex';
+
+    document.getElementById('popup-price').innerText = price;
+}
+
+async function sendOrder(){
+
+    const TOKEN = '8558467067:AAEsv9LHId9xwojnwX04KRbHqAwF9fVJaJc';
+
+    const CHAT_ID = '1053654694';
+
+    const text = `
+🛒 НОВЫЙ ЗАКАЗ
+
+📦 Товар: ${currentProduct}
+
+💰 Сумма: ${currentPrice}
+
+👤 Ник: ${currentNickname}
+
+⏰ Время: ${new Date().toLocaleString()}
+`;
+
+    try{
+
+        await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`,{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                chat_id:CHAT_ID,
+                text:text
+            })
+        });
+
+        alert('Заказ отправлен!');
+
+    }catch(err){
+
+        alert('Ошибка отправки');
+
+    }
+
+}
 /* DK */
 
 function plus(type){
