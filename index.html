@@ -322,7 +322,7 @@ body{
             <div class="counter">
                 <button onclick="minus('dk')">-</button>
 
-                <input id="dk-count" value="1">
+                <input id="dk-count" value="1" oninput="calculate('dk')">
 
                 <button onclick="plus('dk')">+</button>
             </div>
@@ -362,7 +362,7 @@ document.getElementById('dk-count').value
             <div class="counter">
                 <button onclick="minus('balance')">-</button>
 
-                <input id="balance-count" value="1">
+                <input id="balance-count" value="1" oninput="calculate('balance')">
 
                 <button onclick="plus('balance')">+</button>
             </div>
@@ -402,7 +402,7 @@ document.getElementById('balance-count').value
             <div class="counter">
                 <button onclick="minus('token')">-</button>
 
-                <input id="token-count" value="1">
+                <input id="token-count" value="1" oninput="calculate('token')">
 
                 <button onclick="plus('token')">+</button>
             </div>
@@ -481,47 +481,66 @@ let currentPrice = '';
 let currentNickname = '';
 let currentAmount = '';
 
-/* COUNTERS */
+/* AUTO PRICE */
+
+function calculate(type){
+
+    let countInput = document.getElementById(type + '-count');
+
+    let count = parseInt(countInput.value);
+
+    if(isNaN(count) || count < 1){
+        count = 1;
+        countInput.value = 1;
+    }
+
+    if(type === 'dk'){
+
+        document.getElementById('dk-price').innerText =
+        (count * 135) + ' грн';
+
+    }
+
+    if(type === 'balance'){
+
+        document.getElementById('balance-price').innerText =
+        (count * 1) + ' грн';
+
+    }
+
+    if(type === 'token'){
+
+        document.getElementById('token-price').innerText =
+        (count * 9) + ' грн';
+
+    }
+
+}
+
+/* PLUS */
 
 function plus(type){
 
     let input = document.getElementById(type + '-count');
 
-    input.value = parseInt(input.value) + 1;
+    input.value = parseInt(input.value || 1) + 1;
 
-    update(type);
+    calculate(type);
 }
+
+/* MINUS */
 
 function minus(type){
 
     let input = document.getElementById(type + '-count');
 
-    if(parseInt(input.value) > 1){
-        input.value = parseInt(input.value) - 1;
+    let value = parseInt(input.value || 1);
+
+    if(value > 1){
+        input.value = value - 1;
     }
 
-    update(type);
-}
-
-function update(type){
-
-    let count = parseInt(document.getElementById(type + '-count').value);
-
-    if(type === 'dk'){
-        document.getElementById('dk-price').innerText =
-        (count * 135) + ' грн';
-    }
-
-    if(type === 'balance'){
-        document.getElementById('balance-price').innerText =
-        (count * 1) + ' грн';
-    }
-
-    if(type === 'token'){
-        document.getElementById('token-price').innerText =
-        (count * 9) + ' грн';
-    }
-
+    calculate(type);
 }
 
 /* POPUP */
@@ -536,9 +555,11 @@ function openPopup(product, price, nickname, amount){
     document.getElementById('popup').style.display = 'flex';
 
     document.getElementById('popup-price').innerText = price;
+
+    document.querySelector('.confirm-btn').style.display = 'block';
 }
 
-/* SEND TG */
+/* SEND ORDER */
 
 async function sendOrder(){
 
@@ -573,7 +594,15 @@ async function sendOrder(){
             })
         });
 
+        document.querySelector('.confirm-btn').style.display = 'none';
+
         alert('Заказ отправлен!');
+
+        setTimeout(() => {
+
+            document.getElementById('popup').style.display = 'none';
+
+        }, 800);
 
     }catch(err){
 
