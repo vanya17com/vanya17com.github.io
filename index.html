@@ -332,9 +332,15 @@ body{
                 <strong id="dk-price">135 грн</strong>
             </div>
 
-            <button class="buy-btn" onclick="openPopup('ДК', document.getElementById('dk-price').innerText)">
-                К ОПЛАТЕ
-            </button>
+            <button class="buy-btn"
+onclick="openPopup(
+'ДК',
+document.getElementById('dk-price').innerText,
+document.querySelector('input[placeholder=&quot;Введите ник&quot;]').value,
+document.getElementById('dk-count').value
+)">
+К ОПЛАТЕ
+</button>
 
         </div>
 
@@ -366,9 +372,15 @@ body{
                 <strong id="balance-price">1 грн</strong>
             </div>
 
-            <button class="buy-btn" onclick="openPopup('Биржа Баланс', document.getElementById('balance-price').innerText)">
-                К ОПЛАТЕ
-            </button>
+            <button class="buy-btn"
+onclick="openPopup(
+'Биржа Баланс',
+document.getElementById('balance-price').innerText,
+document.querySelectorAll('input[placeholder=&quot;Введите ник&quot;]')[1].value,
+document.getElementById('balance-count').value
+)">
+К ОПЛАТЕ
+</button>
 
         </div>
 
@@ -400,9 +412,15 @@ body{
                 <strong id="token-price">9 грн</strong>
             </div>
 
-            <button class="buy-btn" onclick="openPopup('Токены', document.getElementById('token-price').innerText)">
-                К ОПЛАТЕ
-            </button>
+            <button class="buy-btn"
+onclick="openPopup(
+'Токены',
+document.getElementById('token-price').innerText,
+document.querySelectorAll('input[placeholder=&quot;Введите ник&quot;]')[2].value,
+document.getElementById('token-count').value
+)">
+К ОПЛАТЕ
+</button>
 
         </div>
 
