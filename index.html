@@ -332,14 +332,8 @@ body{
                 <strong id="dk-price">135 грн</strong>
             </div>
 
-            <button class="buy-btn"
-onclick="openPopup(
-'ДК',
-document.getElementById('dk-price').innerText,
-document.querySelector('input[placeholder=&quot;Введите ник&quot;]').value,
-document.getElementById('dk-count').value
-)">
-К ОПЛАТЕ
+            <button class="buy-btn" onclick="openProductPopup('dk')">
+    К ОПЛАТЕ
 </button>
 
         </div>
@@ -372,15 +366,10 @@ document.getElementById('dk-count').value
                 <strong id="balance-price">1 грн</strong>
             </div>
 
-            <button class="buy-btn"
-onclick="openPopup(
-'Биржа Баланс',
-document.getElementById('balance-price').innerText,
-document.querySelectorAll('input[placeholder=&quot;Введите ник&quot;]')[1].value,
-document.getElementById('balance-count').value
-)">
-К ОПЛАТЕ
+            <button class="buy-btn" onclick="openProductPopup('balance')">
+    К ОПЛАТЕ
 </button>
+
 
         </div>
 
@@ -412,61 +401,77 @@ document.getElementById('balance-count').value
                 <strong id="token-price">9 грн</strong>
             </div>
 
-            <button class="buy-btn"
-onclick="openPopup(
-'Токены',
-document.getElementById('token-price').innerText,
-document.querySelectorAll('input[placeholder=&quot;Введите ник&quot;]')[2].value,
-document.getElementById('token-count').value
-)">
-К ОПЛАТЕ
+            <button class="buy-btn" onclick="openProductPopup('token')">
+    К ОПЛАТЕ
 </button>
 
-        </div>
+     </div>
 
-    </div>
+    
 
-</div>
+<!-- PRODUCT POPUP -->
 
-<!-- POPUP -->
-
-<div class="popup" id="popup">
+<div class="popup" id="product-popup">
 
     <div class="popup-box">
 
         <div class="popup-header">
-            <h2>Пополнение</h2>
+            <h2 id="popup-title">ПОКУПКА</h2>
         </div>
 
         <div class="popup-content">
 
-            <div class="pay-item">
+            <div class="input-box">
+
+                <label>Ваш ник</label>
+
+                <input
+                type="text"
+                id="popup-nick"
+                placeholder="Введите ник">
+
+            </div>
+
+            <div class="input-box" style="margin-top:25px;">
+
+                <label>Количество</label>
+
+                <input
+                type="number"
+                id="popup-count"
+                placeholder="Введите количество"
+                oninput="updatePopupPrice()">
+
+            </div>
+
+            <div class="price">
+
+                Стоимость:
+
+                <strong id="popup-price">
+                    0 грн
+                </strong>
+
+            </div>
+
+            <div class="pay-item" style="margin-top:35px;">
+
                 <h4>Номер карты</h4>
+
                 <p>5218 3200 0047 2125</p>
+
             </div>
 
             <div class="pay-item">
-                <h4>Сумма</h4>
-                <p id="popup-price">300 грн</p>
-            </div>
 
-            <div class="pay-item">
                 <h4>Владелец карты</h4>
+
                 <p>Kashirin</p>
+
             </div>
 
-            <div class="pay-item">
-                <h4>Комментарий</h4>
-                <p>Не пишите ничего!</p>
-            </div>
-
-            <div class="timer">
-                06:59
-            </div>
-
-            
-            <button class="confirm-btn" onclick="sendOrder()">
-            Я ОПЛАТИЛ
+            <button class="confirm-btn" onclick="sendPopupOrder()">
+                Я ОПЛАТИЛ
             </button>
 
         </div>
@@ -476,107 +481,125 @@ document.getElementById('token-count').value
 </div>
 
 <script>
+let selectedType = '';
+
 let currentProduct = '';
 let currentPrice = '';
 let currentNickname = '';
 let currentAmount = '';
 
-/* AUTO PRICE */
+/* OPEN PRODUCT */
 
-function calculate(type){
+function openProductPopup(type){
 
-    let countInput = document.getElementById(type + '-count');
+    selectedType = type;
 
-    let count = parseInt(countInput.value);
+    document.getElementById('product-popup').style.display = 'flex';
 
-    if(isNaN(count) || count < 1){
-        count = 1;
-        countInput.value = 1;
-    }
+    document.getElementById('popup-count').value = '';
+    document.getElementById('popup-price').innerText = '0 грн';
+    document.getElementById('popup-nick').value = '';
 
     if(type === 'dk'){
 
-        document.getElementById('dk-price').innerText =
-        (count * 135) + ' грн';
+        document.getElementById('popup-title').innerText = 'ПОКУПКА ДК';
 
     }
 
     if(type === 'balance'){
 
-        document.getElementById('balance-price').innerText =
-        (count * 1) + ' грн';
+        document.getElementById('popup-title').innerText = 'ПОКУПКА БИРЖА БАЛАНС';
 
     }
 
     if(type === 'token'){
 
-        document.getElementById('token-price').innerText =
-        (count * 9) + ' грн';
+        document.getElementById('popup-title').innerText = 'ПОКУПКА ТОКЕНОВ';
 
     }
 
 }
 
-/* PLUS */
+/* UPDATE PRICE */
 
-function plus(type){
+function updatePopupPrice(){
 
-    let input = document.getElementById(type + '-count');
+    let count = parseInt(document.getElementById('popup-count').value);
 
-    input.value = parseInt(input.value || 1) + 1;
+    if(isNaN(count) || count < 1){
 
-    calculate(type);
-}
+        document.getElementById('popup-price').innerText = '0 грн';
 
-/* MINUS */
+        return;
 
-function minus(type){
-
-    let input = document.getElementById(type + '-count');
-
-    let value = parseInt(input.value || 1);
-
-    if(value > 1){
-        input.value = value - 1;
     }
 
-    calculate(type);
-}
+    let total = 0;
 
-/* POPUP */
+    if(selectedType === 'dk'){
 
-function openPopup(product, price, nickname, amount){
+        total = count * 135;
 
-    currentProduct = product;
-    currentPrice = price;
-    currentNickname = nickname;
-    currentAmount = amount;
+    }
 
-    document.getElementById('popup').style.display = 'flex';
+    if(selectedType === 'balance'){
 
-    document.getElementById('popup-price').innerText = price;
+        total = count * 1;
 
-    document.querySelector('.confirm-btn').style.display = 'block';
+    }
+
+    if(selectedType === 'token'){
+
+        total = count * 9;
+
+    }
+
+    document.getElementById('popup-price').innerText =
+    total + ' грн';
+
 }
 
 /* SEND ORDER */
 
-async function sendOrder(){
+async function sendPopupOrder(){
 
     const TOKEN = '8558467067:AAEsv9LHId9xwojnwX04KRbHqAwF9fVJaJc';
 
     const CHAT_ID = '1053654694';
 
+    let nickname =
+    document.getElementById('popup-nick').value;
+
+    let amount =
+    document.getElementById('popup-count').value;
+
+    let price =
+    document.getElementById('popup-price').innerText;
+
+    let product = '';
+
+    if(selectedType === 'dk'){
+        product = 'ДК';
+    }
+
+    if(selectedType === 'balance'){
+        product = 'Биржа Баланс';
+    }
+
+    if(selectedType === 'token'){
+        product = 'Токены';
+    }
+
     const text =
 `🛒 НОВЫЙ ЗАКАЗ
 
-📦 Товар: ${currentProduct}
+📦 Товар: ${product}
 
-📊 Количество: ${currentAmount}
+📊 Количество: ${amount}
 
-💰 Сумма: ${currentPrice}
+💰 Сумма: ${price}
 
-👤 Ник: ${currentNickname}
+👤 Ник: ${nickname}
 
 ⏰ Время: ${new Date().toLocaleString()}
 `;
@@ -600,9 +623,11 @@ async function sendOrder(){
 
         setTimeout(() => {
 
-            document.getElementById('popup').style.display = 'none';
+            document.getElementById('product-popup').style.display = 'none';
 
-        }, 800);
+            document.querySelector('.confirm-btn').style.display = 'block';
+
+        }, 1000);
 
     }catch(err){
 
@@ -612,16 +637,17 @@ async function sendOrder(){
 
 }
 
-/* CLOSE POPUP */
+/* CLOSE */
 
-document.getElementById('popup').addEventListener('click', function(e){
+document.getElementById('product-popup').addEventListener('click', function(e){
 
-    if(e.target.id === 'popup'){
-        document.getElementById('popup').style.display = 'none';
+    if(e.target.id === 'product-popup'){
+
+        document.getElementById('product-popup').style.display = 'none';
+
     }
 
 });
-
 </script>
 
 </body>
