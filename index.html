@@ -479,12 +479,14 @@ document.getElementById('token-count').value
 let currentProduct = '';
 let currentPrice = '';
 let currentNickname = '';
+let currentAmount = '';
 
-function openPopup(product, price, nickname){
+function openPopup(product, price, nickname, amount){
 
     currentProduct = product;
     currentPrice = price;
     currentNickname = nickname;
+    currentAmount = amount;
 
     document.getElementById('popup').style.display = 'flex';
 
@@ -497,10 +499,12 @@ async function sendOrder(){
 
     const CHAT_ID = '1053654694';
 
-    const text = `
-🛒 НОВЫЙ ЗАКАЗ
+    const text =
+`🛒 НОВЫЙ ЗАКАЗ
 
 📦 Товар: ${currentProduct}
+
+📊 Количество: ${currentAmount}
 
 💰 Сумма: ${currentPrice}
 
